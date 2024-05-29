@@ -1,5 +1,5 @@
 import Config
 
-config :tesla, adapter: Tesla.Adapter.Hackney
+config :ljdc, :url, "https://lesjoiesducode.fr/random"
 
-config :ljdc, slack_webhook: System.fetch_env!("SLACK_WEBHOOK")
+import_config "#{Mix.env()}.exs"

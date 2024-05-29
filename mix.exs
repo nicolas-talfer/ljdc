@@ -24,7 +24,9 @@ defmodule LJDC.MixProject do
       {:floki, "~> 0.36.2"},
       {:tesla, "~> 1.9"},
       {:hackney, "~> 1.20"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      {:mox, "~> 1.0", only: :test},
+      {:mock, "~> 0.3.8", only: :test}
     ]
   end
 end

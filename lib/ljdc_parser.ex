@@ -1,27 +1,5 @@
-defmodule LJDC do
-  require Logger
-
-  defmodule Post do
-    defstruct [:title, :info, :gif]
-
-    @type t :: %__MODULE__{
-            title: String.t(),
-            info: String.t(),
-            gif: String.t()
-          }
-  end
-
-  def random() do
-    try do
-      {:ok, html} = LJDC.Client.random()
-      {:ok, _} = parse(html)
-    rescue
-      error ->
-        Logger.error("Failed to fetch/parse gif: #{inspect(error)}")
-        error
-    end
-  end
-
+defmodule LJDC.Parser do
+  @spec parse(binary()) :: {:ok, %LJDC.Post{gif: binary(), info: binary(), title: binary()}}
   def parse(html) do
     {:ok, document} = Floki.parse_document(html)
 
@@ -43,7 +21,7 @@ defmodule LJDC do
 
     info = (author <> date) |> String.trim()
 
-    # retriev gif url
+    # retrieve gif url
     [{"object", object_attr, _}] = Floki.find(article, "object")
     {_, gif} = List.keyfind(object_attr, "data", 0)
     result = %LJDC.Post{title: title, info: info, gif: gif}
@@ -51,5 +29,3 @@ defmodule LJDC do
     {:ok, result}
   end
 end
-
-# article: https://lesjoiesducode.fr/intelligence-artificielle-grok-elon-musk-dispose-deja-de-son-api-en-version-beta

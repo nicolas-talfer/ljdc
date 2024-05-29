@@ -24,3 +24,5 @@ ljdc-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+/config/slack.exs
