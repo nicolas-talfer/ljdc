@@ -9,6 +9,7 @@ defmodule Slack.Test do
 
   test "nominal case", %{post: post} do
     Mox.defmock(Slack.Client.Mock, for: Slack.Client.Behaviour)
+
     expect(Slack.Client.Mock, :post_message, fn message ->
       assert is_map(message)
       :ok
@@ -18,15 +19,14 @@ defmodule Slack.Test do
   end
 
   test "HTTP error", %{post: post} do
-
     error = {:error, "some error"}
 
     Mox.defmock(Slack.Client.Mock, for: Slack.Client.Behaviour)
+
     expect(Slack.Client.Mock, :post_message, fn _ ->
       error
     end)
 
     assert error == Slack.post_message(post, Slack.Client.Mock)
-end
-
+  end
 end
