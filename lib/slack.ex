@@ -1,7 +1,7 @@
 defmodule Slack do
-  @spec post_message(LJDC.Post.t()) :: :ok | {:error, any()}
-  def post_message(%LJDC.Post{title: title, info: info, gif: gif}) do
-    Slack.Client.post_message(%{
+  @spec post_message(LJDC.Post.t(), atom()) :: :ok | {:error, any()}
+  def post_message(%LJDC.Post{title: title, info: info, gif: gif}, slack_client \\ Slack.Client) do
+    slack_client.post_message(%{
       "blocks" => [
         %{
           "type" => "header",

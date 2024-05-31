@@ -25,7 +25,7 @@ defmodule LJDC.MixProject do
       {:tesla, "~> 1.9"},
       {:hackney, "~> 1.20"},
       {:jason, "~> 1.4"},
-      {:mox, "~> 1.0", only: :test},
+      {:hammox, "~> 0.7.0", only: :test},
       {:mock, "~> 0.3.8", only: :test}
     ]
   end

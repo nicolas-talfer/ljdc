@@ -2,18 +2,17 @@ defmodule Slack.Client do
   use Tesla
   require Logger
 
-  plug(
-    Tesla.Middleware.BaseUrl,
-    Application.get_env(:ljdc, :slack_webhook)
-  )
+  @behaviour Slack.Client.Behaviour
 
+  plug(Tesla.Middleware.BaseUrl, Application.get_env(:ljdc, :slack_webhook))
   plug(Tesla.Middleware.FollowRedirects)
   plug(Tesla.Middleware.JSON)
 
-  @spec post_message(map()) :: :ok | {:error, any()}
+  @impl Slack.Client.Behaviour
   def post_message(message) do
     case post("/", message) do
       {:ok, %Tesla.Env{status: 200}} ->
+        Logger.debug("Successfully posted message on Slack")
         :ok
 
       other ->

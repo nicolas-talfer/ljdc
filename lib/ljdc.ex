@@ -14,7 +14,7 @@ defmodule LJDC do
   def random() do
     try do
       {:ok, html} = LJDC.Client.random()
-      {:ok, _} = parse(html)
+      {:ok, _} = LJDC.Parser.parse(html)
     rescue
       error ->
         Logger.error("Failed to fetch/parse gif: #{inspect(error)}")
