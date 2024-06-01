@@ -1,4 +1,4 @@
-defmodule Slack.Test do
+defmodule Slack.Test.V2 do
   use ExUnit.Case
   import Hammox
 
