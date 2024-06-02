@@ -10,6 +10,7 @@ defmodule LJDC.Application do
     children = [
       # Starts a worker by calling: Ljdc.Worker.start_link(arg)
       # {Ljdc.Worker, arg}
+      LJDC.Repo
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

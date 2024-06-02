@@ -1,5 +1,5 @@
 import Config
 
-config :ljdc, :url, "https://lesjoiesducode.fr/random"
+config :ljdc, ecto_repos: [LJDC.Repo]
 
 import_config "#{Mix.env()}.exs"
